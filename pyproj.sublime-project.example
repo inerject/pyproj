@@ -7,6 +7,8 @@
         "*.sublime-workspace"
       ],
       "folder_exclude_patterns": [
+        "build",
+        "dist",
         "venv",
         "__pycache__",
       ],

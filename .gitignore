@@ -5,6 +5,7 @@ __pycache__/
 
 *.sublime-project
 *.sublime-workspace
+*.todo
 
 dist/
 build/

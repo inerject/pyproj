@@ -1,6 +1,6 @@
 import os
 import argparse
-import files_template
+import files_from_tmpl
 import resources
 import subprocess
 
@@ -17,9 +17,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     #
-    files_template.replicate(
-        dst=args.proj_name,
+    files_from_tmpl.generate(
         src=args.template,
+        dst_name=args.proj_name,
         rewrite=True,
     )
 

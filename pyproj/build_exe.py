@@ -1,5 +1,5 @@
 import PyInstaller.__main__
-import resources
+from resource import Resource
 from pathlib import Path
 
 
@@ -13,17 +13,7 @@ if __name__ == '__main__':
         '--console',
     ]
 
-    def add_data_arg(item, *, is_dir):
-        src = resources.BASE_DIR_PATH / item
-        if is_dir:
-            dst = Path(resources.BASE_DIR_NAME) / item
-        else:
-            dst = Path(resources.BASE_DIR_NAME) / '.'
-        args.extend(['--add-data', f'{src};{dst}'])
-
-    for item in resources.FILES:
-        add_data_arg(item, is_dir=False)
-    for item in resources.DIRECTORIES:
-        add_data_arg(item, is_dir=True)
+    for resource in Resource.get_all():
+        args.extend(['--add-data', f'{resource};{resource.pyinstaller_dst()}'])
 
     PyInstaller.__main__.run(args)

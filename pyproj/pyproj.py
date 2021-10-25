@@ -1,8 +1,8 @@
 import os
 import argparse
 import files_from_tmpl
-import resources
 import subprocess
+from resource import Resource
 
 
 if __name__ == '__main__':
@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser.add_argument(
         'proj_name')
     parser.add_argument(
-        '-t', '--template', default=resources.path('template'))
+        '-t', '--template', default=str(Resource('template')))
     parser.add_argument(
         '-v', '--py_ver', default='')
 
@@ -28,8 +28,8 @@ if __name__ == '__main__':
         if not args.py_ver.startswith('-'):
             args.py_ver = '-' + args.py_ver
 
-    run_ps_script_cmd = 'powershell {ps_script_path} {ps_script_args}'.format(
-        ps_script_path=resources.path('venv.ps1'),
+    run_ps_script_cmd = 'powershell {ps_script} {ps_script_args}'.format(
+        ps_script=Resource('venv.ps1'),
         ps_script_args=f'-py_ver "{args.py_ver}"',
     )
 
